@@ -41,7 +41,7 @@ import sys
 import tempfile
 import unittest
 
-from compat import (
+from .compat import (
     StringIO,
     UnicodeType,
     asbytes,
@@ -385,7 +385,7 @@ class TestIntelHexBase(unittest.TestCase):
         """
         try:
             callableObj(*args, **kwargs)
-        except excClass, exc:
+        except excClass as exc:
             excMsg = str(exc)
             if not msg:
                 # No message provided: any message is fine.

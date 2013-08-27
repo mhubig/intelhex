@@ -67,7 +67,7 @@ def main(argv=None):
                 print(VERSION)
                 return 0
 
-    except getopt.GetoptError, e:
+    except getopt.GetoptError as e:
         sys.stderr.write(str(e)+"\n")
         sys.stderr.write(USAGE+"\n")
         return 1

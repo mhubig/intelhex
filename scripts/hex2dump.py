@@ -61,7 +61,7 @@ def hex2dump(hexfile, start=None, end=None):
         hexfile = sys.stdin
     try:
         ih = intelhex.IntelHex(hexfile)
-    except (IOError, intelhex.IntelHexError), e:
+    except (IOError, intelhex.IntelHexError) as e:
         sys.stderr.write('Error reading file: %s\n' % e)
         return 1
     if not (start is None and end is None):
@@ -102,7 +102,7 @@ def main(argv=None):
             raise getopt.GetoptError('Hex file is not specified')
         if len(args) > 1:
             raise getopt.GetoptError('Too many arguments')
-    except getopt.GetoptError, msg:
+    except getopt.GetoptError as msg:
         txt = 'ERROR: '+str(msg)  # that's required to get not-so-dumb result from 2to3 tool
         print(txt)
         print(USAGE)
@@ -110,7 +110,7 @@ def main(argv=None):
 
     try:
         return hex2dump(args[0], start, end)
-    except IOError, e:
+    except IOError as e:
         import errno
         if e.errno not in (0, errno.EPIPE):
             raise

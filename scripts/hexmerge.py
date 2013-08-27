@@ -131,7 +131,7 @@ def main(args=None):
         if len(args) == 0:
             raise getopt.GetoptError('You should specify file list')
 
-    except getopt.GetoptError, e:
+    except getopt.GetoptError as e:
         sys.stderr.write(str(e)+"\n")
         sys.stderr.write(USAGE+"\n")
         return 1
@@ -159,7 +159,7 @@ def main(args=None):
             ih = ih[fstart:end_addr_inclusive(fend)]
         try:
             res.merge(ih, overlap)
-        except intelhex.AddressOverlapError, e:
+        except intelhex.AddressOverlapError as e:
             sys.stderr.write('Merging: '+fname+"\n")
             sys.stderr.write(str(e)+"\n")
             return 1

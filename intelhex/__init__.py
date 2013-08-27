@@ -47,7 +47,7 @@ from bisect import bisect_right
 import os
 import sys
 
-from compat import (
+from .compat import (
     IntTypes,
     StrType,
     StringIO,
@@ -976,7 +976,7 @@ def hex2bin(fin, fout, start=None, end=None, size=None, pad=None):
     """
     try:
         h = IntelHex(fin)
-    except HexReaderError, e:
+    except HexReaderError as e:
         txt = "ERROR: bad HEX file: %s" % str(e)
         print(txt)
         return 1
@@ -998,7 +998,7 @@ def hex2bin(fin, fout, start=None, end=None, size=None, pad=None):
             # using .padding attribute rather than pad argument to function call
             h.padding = pad
         h.tobinfile(fout, start, end)
-    except IOError, e:
+    except IOError as e:
         txt = "ERROR: Could not write to file: %s: %s" % (fout, str(e))
         print(txt)
         return 1
@@ -1018,14 +1018,14 @@ def bin2hex(fin, fout, offset=0):
     h = IntelHex()
     try:
         h.loadbin(fin, offset)
-    except IOError, e:
+    except IOError as e:
         txt = 'ERROR: unable to load bin file:', str(e)
         print(txt)
         return 1
 
     try:
         h.tofile(fout, format='hex')
-    except IOError, e:
+    except IOError as e:
         txt = "ERROR: Could not write to file: %s: %s" % (fout, str(e))
         print(txt)
         return 1
@@ -1227,7 +1227,7 @@ class IntelHexError(Exception):
             return self.msg
         try:
             return self._fmt % self.__dict__
-        except (NameError, ValueError, KeyError), e:
+        except (NameError, ValueError, KeyError) as e:
             return 'Unprintable exception %s: %s' \
                 % (repr(e), str(e))
 

@@ -1,0 +1,4 @@
+NOTE:
+Sources from this branch (source tarball) 
+are already converted to Python 3 syntax
+and incompatible with Python 2.
