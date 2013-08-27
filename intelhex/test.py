@@ -509,6 +509,14 @@ class TestIntelHex(TestIntelHexBase):
         s2 = asstr(bin8.tostring())
         self.assertEqual(s2, s1, "data not equal\n%s\n\n%s" % (s1, s2))
 
+    def test_tobinfile_realfile(self):
+        ih = IntelHex(self.f)
+        tf = tempfile.TemporaryFile(mode='wb')
+        try:
+            ih.tobinfile(tf)
+        finally:
+            tf.close()
+
     def test_write_empty_hexfile(self):
         ih = intelhex.IntelHex()
         sio = StringIO()
